@@ -140,7 +140,6 @@
 
 	span.check {
 		padding: 0.5rem;
-		border: 2px solid lightgray;
 		color: gray;
 	}
 
