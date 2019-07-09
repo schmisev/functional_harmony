@@ -864,7 +864,7 @@ var app = (function () {
     }
 
     function create_fragment(ctx) {
-    	var h1, t1, div0, select0, t2, select1, t3, table, t4, t5, p, span0, input0, t6, t7, span1, input1, t8, t9, span2, input2, t10, t11, div1, dispose;
+    	var h1, t1, div, select0, t2, select1, t3, table, t4, t5, p, span0, input0, t6, t7, span1, input1, t8, t9, span2, input2, t10, dispose;
 
     	var each_value_4 = WHOLE_NOTE_SELECT;
 
@@ -897,7 +897,7 @@ var app = (function () {
     			h1 = element("h1");
     			h1.textContent = "~ modes ~";
     			t1 = space();
-    			div0 = element("div");
+    			div = element("div");
     			select0 = element("select");
 
     			for (var i = 0; i < each_blocks_2.length; i += 1) {
@@ -933,8 +933,6 @@ var app = (function () {
     			span2 = element("span");
     			input2 = element("input");
     			t10 = text(" show numerals");
-    			t11 = space();
-    			div1 = element("div");
     			attr(h1, "class", "svelte-wmqv9l");
     			add_location(h1, file, 15, 0, 305);
     			if (ctx.wniSelect === void 0) add_render_callback(() => ctx.select0_change_handler.call(select0));
@@ -958,10 +956,8 @@ var app = (function () {
     			attr(span2, "class", "check svelte-wmqv9l");
     			add_location(span2, file, 77, 0, 1544);
     			add_location(p, file, 74, 0, 1359);
-    			attr(div0, "class", "global svelte-wmqv9l");
-    			add_location(div0, file, 17, 0, 325);
-    			attr(div1, "class", "global svelte-wmqv9l");
-    			add_location(div1, file, 81, 0, 1645);
+    			attr(div, "class", "global svelte-wmqv9l");
+    			add_location(div, file, 17, 0, 325);
 
     			dispose = [
     				listen(select0, "change", ctx.select0_change_handler),
@@ -979,8 +975,8 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert(target, h1, anchor);
     			insert(target, t1, anchor);
-    			insert(target, div0, anchor);
-    			append(div0, select0);
+    			insert(target, div, anchor);
+    			append(div, select0);
 
     			for (var i = 0; i < each_blocks_2.length; i += 1) {
     				each_blocks_2[i].m(select0, null);
@@ -988,8 +984,8 @@ var app = (function () {
 
     			select_option(select0, ctx.wniSelect);
 
-    			append(div0, t2);
-    			append(div0, select1);
+    			append(div, t2);
+    			append(div, select1);
 
     			for (var i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].m(select1, null);
@@ -997,8 +993,8 @@ var app = (function () {
 
     			select_option(select1, ctx.miSelect);
 
-    			append(div0, t3);
-    			append(div0, table);
+    			append(div, t3);
+    			append(div, table);
     			if (if_block) if_block.m(table, null);
     			append(table, t4);
 
@@ -1006,8 +1002,8 @@ var app = (function () {
     				each_blocks[i].m(table, null);
     			}
 
-    			append(div0, t5);
-    			append(div0, p);
+    			append(div, t5);
+    			append(div, p);
     			append(p, span0);
     			append(span0, input0);
 
@@ -1028,8 +1024,6 @@ var app = (function () {
     			input2.checked = ctx.showRoman;
 
     			append(span2, t10);
-    			insert(target, t11, anchor);
-    			insert(target, div1, anchor);
     		},
 
     		p: function update(changed, ctx) {
@@ -1125,7 +1119,7 @@ var app = (function () {
     			if (detaching) {
     				detach(h1);
     				detach(t1);
-    				detach(div0);
+    				detach(div);
     			}
 
     			destroy_each(each_blocks_2, detaching);
@@ -1135,11 +1129,6 @@ var app = (function () {
     			if (if_block) if_block.d();
 
     			destroy_each(each_blocks, detaching);
-
-    			if (detaching) {
-    				detach(t11);
-    				detach(div1);
-    			}
 
     			run_all(dispose);
     		}

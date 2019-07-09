@@ -79,10 +79,6 @@
 </p>
 </div>
 
-<div class="global">
-
-</div>
-
 <style>
 	div.global {
 		font-family: 'Consolas', Courier, monospace;
