@@ -1,2 +1,1221 @@
-var app=function(){"use strict";function e(){}function n(e){return e()}function t(){return Object.create(null)}function o(e){e.forEach(n)}function c(e){return"function"==typeof e}function r(e,n){return e!=e?n==n:e!==n||e&&"object"==typeof e||"function"==typeof e}function a(e,n){e.appendChild(n)}function l(e,n,t){e.insertBefore(n,t||null)}function s(e){e.parentNode.removeChild(e)}function d(e,n){for(let t=0;t<e.length;t+=1)e[t]&&e[t].d(n)}function h(e){return document.createElement(e)}function u(e){return document.createTextNode(e)}function i(){return u(" ")}function m(e,n,t,o){return e.addEventListener(n,t,o),()=>e.removeEventListener(n,t,o)}function f(e,n,t){null==t?e.removeAttribute(n):e.setAttribute(n,t)}function p(e,n){n=""+n,e.data!==n&&(e.data=n)}function v(e,n){for(let t=0;t<e.options.length;t+=1){const o=e.options[t];if(o.__value===n)return void(o.selected=!0)}}function g(e){const n=e.querySelector(":checked")||e.options[0];return n&&n.__value}let w;function _(e){w=e}const b=[],y=[],$=[],x=[],M=Promise.resolve();let S=!1;function k(e){$.push(e)}function N(){const e=new Set;do{for(;b.length;){const e=b.shift();_(e),R(e.$$)}for(;y.length;)y.pop()();for(let n=0;n<$.length;n+=1){const t=$[n];e.has(t)||(t(),e.add(t))}$.length=0}while(b.length);for(;x.length;)x.pop()();S=!1}function R(e){e.fragment&&(e.update(e.dirty),o(e.before_update),e.fragment.p(e.dirty,e.ctx),e.dirty=null,e.after_update.forEach(k))}const E=new Set;function O(e,n){e.$$.dirty||(b.push(e),S||(S=!0,M.then(N)),e.$$.dirty=t()),e.$$.dirty[n]=!0}function I(r,a,l,s,d,h){const u=w;_(r);const i=a.props||{},m=r.$$={fragment:null,ctx:null,props:h,update:e,not_equal:d,bound:t(),on_mount:[],on_destroy:[],before_update:[],after_update:[],context:new Map(u?u.$$.context:[]),callbacks:t(),dirty:null};let f=!1;var p,v,g;m.ctx=l?l(r,i,(e,n)=>{m.ctx&&d(m.ctx[e],m.ctx[e]=n)&&(m.bound[e]&&m.bound[e](n),f&&O(r,e))}):i,m.update(),f=!0,o(m.before_update),m.fragment=s(m.ctx),a.target&&(a.hydrate?m.fragment.l((g=a.target,Array.from(g.childNodes))):m.fragment.c(),a.intro&&((p=r.$$.fragment)&&p.i&&(E.delete(p),p.i(v))),function(e,t,r){const{fragment:a,on_mount:l,on_destroy:s,after_update:d}=e.$$;a.m(t,r),k(()=>{const t=l.map(n).filter(c);s?s.push(...t):o(t),e.$$.on_mount=[]}),d.forEach(k)}(r,a.target,a.anchor),N()),_(u)}class C{$destroy(){var n,t;t=1,(n=this).$$.fragment&&(o(n.$$.on_destroy),n.$$.fragment.d(t),n.$$.on_destroy=n.$$.fragment=null,n.$$.ctx={}),this.$destroy=e}$on(e,n){const t=this.$$.callbacks[e]||(this.$$.callbacks[e]=[]);return t.push(n),()=>{const e=t.indexOf(n);-1!==e&&t.splice(e,1)}}$set(){}}const j=["C","D","E","F","G","A","B"],H=["I","II","III","IV","V","VI","VII"],L=[[!1,""],[!0,""],[!0,""],[!1,""],[!1,""],[!0,""],[!0,"°"]],A=["","#","x","(3#)","(4#)","(3#)","(4#)","(5#|5b)","(4b)","(3b)","bb","b"],T=[["maj7","6"],["m7","m6"],["m7"],["maj7","6"],["7","6"],["m7"],["dim7"]],D=[0,2,4,5,7,9,11],V=[2,2,1,2,2,2,1],q=[["Ionian","major"],["Dorian"],["Phrygian"],["Lydian"],["Mixolydian"],["Aeolian","minor"],["Locrian"]],B=j.map((e,n)=>[e,n]),P=[["x",2],["#",1],["~",0],["b",-1],["bb",-2]],z=(e,n)=>(e%n+n)%n,F=function(e,n){return z(D[z(e,7)]+n,12)},G=function(e,n,t){for(var o=[],c=0,r=0,a=0;a<7;a++){r=z(a+e,7);var l={};l.wni=z(n+a,7),l.rni=F(n,c+t),l.rwni=F(l.wni,0),l.mi=z(l.rni-l.rwni,12),l.wholeNote=j[l.wni],l.mod=A[l.mi],l.possibleChords=T[r],l.bareRoman=H[a],l.secRoman=(L[r][0]?l.bareRoman.toLowerCase():l.bareRoman).concat(L[r][1]),o.push(l),c+=V[r]}return o},W=function(e,n){for(var t=[],o=0;o<7;o++){var c={};c.i=o,c.name=q[o],c.chordScale=G(o,e,n),t.push(c)}return t};var J=Object.freeze({ROMAN_NOTES:H,WHOLE_NOTE_SELECT:B,MOD_SELECT:P,generateChordScale:G,generateModeMatrix:W});function K(e,n,t){const o=Object.create(e);return o.chord=n[t],o}function Q(e,n,t){const o=Object.create(e);return o.mode=n[t],o}function U(e,n,t){const o=Object.create(e);return o.rn=n[t],o}function X(e,n,t){const o=Object.create(e);return o.n=n[t][0],o.v=n[t][1],o}function Y(e,n,t){const o=Object.create(e);return o.n=n[t][0],o.v=n[t][1],o}function Z(e){var n,t,o=e.n;return{c(){n=h("option"),t=u(o),n.__value=e.v,n.value=n.__value},m(e,o){l(e,n,o),a(n,t)},p(e,t){n.value=n.__value},d(e){e&&s(n)}}}function ee(e){var n,t,o=e.n;return{c(){n=h("option"),t=u(o),n.__value=e.v,n.value=n.__value},m(e,o){l(e,n,o),a(n,t)},p(e,t){n.value=n.__value},d(e){e&&s(n)}}}function ne(e){for(var n,t,o=e.showModeNames&&te(),c=H,r=[],u=0;u<c.length;u+=1)r[u]=oe(U(e,c,u));return{c(){n=h("tr"),o&&o.c(),t=i();for(var e=0;e<r.length;e+=1)r[e].c()},m(e,c){l(e,n,c),o&&o.m(n,null),a(n,t);for(var s=0;s<r.length;s+=1)r[s].m(n,null)},p(e,a){if(a.showModeNames?o||((o=te()).c(),o.m(n,t)):o&&(o.d(1),o=null),e.cl){c=H;for(var l=0;l<c.length;l+=1){const t=U(a,c,l);r[l]?r[l].p(e,t):(r[l]=oe(t),r[l].c(),r[l].m(n,null))}for(;l<r.length;l+=1)r[l].d(1);r.length=c.length}},d(e){e&&s(n),o&&o.d(),d(r,e)}}}function te(e){var n;return{c(){(n=h("th")).textContent="MODES",f(n,"class","svelte-164dwyv")},m(e,t){l(e,n,t)},d(e){e&&s(n)}}}function oe(n){var t,o,c=n.rn;return{c(){t=h("th"),o=u(c),f(t,"class","svelte-164dwyv")},m(e,n){l(e,t,n),a(t,o)},p:e,d(e){e&&s(t)}}}function ce(e){var n,t,o,c=e.mode.name[0];return{c(){n=h("td"),t=h("b"),o=u(c),f(n,"class","mode svelte-164dwyv")},m(e,c){l(e,n,c),a(n,t),a(t,o)},p(e,n){e.modeMatrix&&c!==(c=n.mode.name[0])&&p(o,c)},d(e){e&&s(n)}}}function re(e){var n,t,o,c,r=e.chord.secRoman;return{c(){n=h("td"),t=h("span"),o=h("b"),c=u(r),f(t,"class","roman"),f(n,"class","roman svelte-164dwyv")},m(e,r){l(e,n,r),a(n,t),a(t,o),a(o,c)},p(e,n){e.modeMatrix&&r!==(r=n.chord.secRoman)&&p(c,r)},d(e){e&&s(n)}}}function ae(e){var n,t,o,c,r,d,m,v,g,w,_,b,y,$=e.chord.wholeNote,x=e.chord.mod,M=e.chord.possibleChords[0],S=e.showRoman&&re(e);return{c(){n=h("td"),t=h("table"),o=h("tr"),c=h("td"),r=h("span"),d=h("b"),m=u($),v=h("sup"),g=u(x),w=h("span"),_=u(M),b=i(),y=h("tr"),S&&S.c(),f(r,"class","note"),f(w,"class","chord"),f(c,"class","chord svelte-164dwyv"),f(t,"class","chord svelte-164dwyv"),f(n,"class","svelte-164dwyv")},m(e,s){l(e,n,s),a(n,t),a(t,o),a(o,c),a(c,r),a(r,d),a(d,m),a(d,v),a(v,g),a(c,w),a(w,_),a(t,b),a(t,y),S&&S.m(y,null)},p(e,n){e.modeMatrix&&$!==($=n.chord.wholeNote)&&p(m,$),e.modeMatrix&&x!==(x=n.chord.mod)&&p(g,x),e.modeMatrix&&M!==(M=n.chord.possibleChords[0])&&p(_,M),n.showRoman?S?S.p(e,n):((S=re(n)).c(),S.m(y,null)):S&&(S.d(1),S=null)},d(e){e&&s(n),S&&S.d()}}}function le(e){for(var n,t,o,c=e.showModeNames&&ce(e),r=e.mode.chordScale,u=[],m=0;m<r.length;m+=1)u[m]=ae(K(e,r,m));return{c(){n=h("tr"),c&&c.c(),t=i();for(var e=0;e<u.length;e+=1)u[e].c();o=i()},m(e,r){l(e,n,r),c&&c.m(n,null),a(n,t);for(var s=0;s<u.length;s+=1)u[s].m(n,null);a(n,o)},p(e,a){if(a.showModeNames?c?c.p(e,a):((c=ce(a)).c(),c.m(n,t)):c&&(c.d(1),c=null),e.showRoman||e.modeMatrix){r=a.mode.chordScale;for(var l=0;l<r.length;l+=1){const t=K(a,r,l);u[l]?u[l].p(e,t):(u[l]=ae(t),u[l].c(),u[l].m(n,o))}for(;l<u.length;l+=1)u[l].d(1);u.length=r.length}},d(e){e&&s(n),c&&c.d(),d(u,e)}}}function se(n){for(var t,c,r,p,g,w,_,b,y,$,x,M,S,N,R,E,O,I,C,j,H,L,A,T=B,D=[],V=0;V<T.length;V+=1)D[V]=Z(Y(n,T,V));var q=P,z=[];for(V=0;V<q.length;V+=1)z[V]=ee(X(n,q,V));var F=n.showHeader&&ne(n),G=n.modeMatrix,W=[];for(V=0;V<G.length;V+=1)W[V]=le(Q(n,G,V));return{c(){(t=h("h1")).textContent="~ modes ~",c=i(),r=h("div"),p=h("select");for(var e=0;e<D.length;e+=1)D[e].c();g=i(),w=h("select");for(e=0;e<z.length;e+=1)z[e].c();_=i(),b=h("table"),F&&F.c(),y=i();for(e=0;e<W.length;e+=1)W[e].c();$=i(),x=h("p"),M=h("span"),S=h("input"),N=u(" show mode names"),R=i(),E=h("span"),O=h("input"),I=u(" show header"),C=i(),j=h("span"),H=h("input"),L=u(" show roman numerals"),f(t,"class","svelte-164dwyv"),void 0===n.wniSelect&&k(()=>n.select0_change_handler.call(p)),f(p,"class","svelte-164dwyv"),void 0===n.miSelect&&k(()=>n.select1_change_handler.call(w)),f(w,"class","svelte-164dwyv"),f(b,"class","modes svelte-164dwyv"),f(S,"type","checkbox"),f(M,"class","check svelte-164dwyv"),f(O,"type","checkbox"),f(E,"class","check svelte-164dwyv"),f(H,"type","checkbox"),f(j,"class","check svelte-164dwyv"),f(r,"class","svelte-164dwyv"),A=[m(p,"change",n.select0_change_handler),m(w,"change",n.select1_change_handler),m(S,"change",n.input0_change_handler),m(O,"change",n.input1_change_handler),m(H,"change",n.input2_change_handler)]},m(e,o){l(e,t,o),l(e,c,o),l(e,r,o),a(r,p);for(var s=0;s<D.length;s+=1)D[s].m(p,null);v(p,n.wniSelect),a(r,g),a(r,w);for(s=0;s<z.length;s+=1)z[s].m(w,null);v(w,n.miSelect),a(r,_),a(r,b),F&&F.m(b,null),a(b,y);for(s=0;s<W.length;s+=1)W[s].m(b,null);a(r,$),a(r,x),a(x,M),a(M,S),S.checked=n.showModeNames,a(M,N),a(x,R),a(x,E),a(E,O),O.checked=n.showHeader,a(E,I),a(x,C),a(x,j),a(j,H),H.checked=n.showRoman,a(j,L)},p(e,n){if(e.cl){T=B;for(var t=0;t<T.length;t+=1){const o=Y(n,T,t);D[t]?D[t].p(e,o):(D[t]=Z(o),D[t].c(),D[t].m(p,null))}for(;t<D.length;t+=1)D[t].d(1);D.length=T.length}if(e.wniSelect&&v(p,n.wniSelect),e.cl){q=P;for(t=0;t<q.length;t+=1){const o=X(n,q,t);z[t]?z[t].p(e,o):(z[t]=ee(o),z[t].c(),z[t].m(w,null))}for(;t<z.length;t+=1)z[t].d(1);z.length=q.length}if(e.miSelect&&v(w,n.miSelect),n.showHeader?F?F.p(e,n):((F=ne(n)).c(),F.m(b,y)):F&&(F.d(1),F=null),e.modeMatrix||e.showRoman||e.showModeNames){G=n.modeMatrix;for(t=0;t<G.length;t+=1){const o=Q(n,G,t);W[t]?W[t].p(e,o):(W[t]=le(o),W[t].c(),W[t].m(b,null))}for(;t<W.length;t+=1)W[t].d(1);W.length=G.length}e.showModeNames&&(S.checked=n.showModeNames),e.showHeader&&(O.checked=n.showHeader),e.showRoman&&(H.checked=n.showRoman)},i:e,o:e,d(e){e&&(s(t),s(c),s(r)),d(D,e),d(z,e),F&&F.d(),d(W,e),o(A)}}}function de(e,n,t){let o=0,c=0,r=!0,a=!0,l=!0,s=W(0,0);return e.$$.update=((e={wniSelect:1,miSelect:1})=>{(e.wniSelect||e.miSelect)&&t("modeMatrix",s=W(parseInt(o),parseInt(c)))}),{wniSelect:o,miSelect:c,showModeNames:r,showHeader:a,showRoman:l,modeMatrix:s,select0_change_handler:function(){o=g(this),t("wniSelect",o),t("cl",J)},select1_change_handler:function(){c=g(this),t("miSelect",c),t("cl",J)},input0_change_handler:function(){r=this.checked,t("showModeNames",r)},input1_change_handler:function(){a=this.checked,t("showHeader",a)},input2_change_handler:function(){l=this.checked,t("showRoman",l)}}}return new class extends C{constructor(e){super(),I(this,e,de,se,r,[])}}({target:document.body,props:{}})}();
+
+(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else
+            node.setAttribute(attribute, value);
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_data(text, data) {
+        data = '' + data;
+        if (text.data !== data)
+            text.data = data;
+    }
+    function select_option(select, value) {
+        for (let i = 0; i < select.options.length; i += 1) {
+            const option = select.options[i];
+            if (option.__value === value) {
+                option.selected = true;
+                return;
+            }
+        }
+    }
+    function select_value(select) {
+        const selected_option = select.querySelector(':checked') || select.options[0];
+        return selected_option && selected_option.__value;
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    function flush() {
+        const seen_callbacks = new Set();
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            while (dirty_components.length) {
+                const component = dirty_components.shift();
+                set_current_component(component);
+                update(component.$$);
+            }
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    callback();
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+    }
+    function update($$) {
+        if ($$.fragment) {
+            $$.update($$.dirty);
+            run_all($$.before_update);
+            $$.fragment.p($$.dirty, $$.ctx);
+            $$.dirty = null;
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function mount_component(component, target, anchor) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment.m(target, anchor);
+        // onMount happens before the initial afterUpdate
+        add_render_callback(() => {
+            const new_on_destroy = on_mount.map(run).filter(is_function);
+            if (on_destroy) {
+                on_destroy.push(...new_on_destroy);
+            }
+            else {
+                // Edge case - component was destroyed immediately,
+                // most likely as a result of a binding initialising
+                run_all(new_on_destroy);
+            }
+            component.$$.on_mount = [];
+        });
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        if (component.$$.fragment) {
+            run_all(component.$$.on_destroy);
+            component.$$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            component.$$.on_destroy = component.$$.fragment = null;
+            component.$$.ctx = {};
+        }
+    }
+    function make_dirty(component, key) {
+        if (!component.$$.dirty) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty = blank_object();
+        }
+        component.$$.dirty[key] = true;
+    }
+    function init(component, options, instance, create_fragment, not_equal, prop_names) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const props = options.props || {};
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props: prop_names,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(parent_component ? parent_component.$$.context : []),
+            // everything else
+            callbacks: blank_object(),
+            dirty: null
+        };
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, props, (key, value) => {
+                if ($$.ctx && not_equal($$.ctx[key], $$.ctx[key] = value)) {
+                    if ($$.bound[key])
+                        $$.bound[key](value);
+                    if (ready)
+                        make_dirty(component, key);
+                }
+            })
+            : props;
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        $$.fragment = create_fragment($$.ctx);
+        if (options.target) {
+            if (options.hydrate) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment.l(children(options.target));
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set() {
+            // overridden by instance, if it has props
+        }
+    }
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error(`'target' is a required option`);
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn(`Component was already destroyed`); // eslint-disable-line no-console
+            };
+        }
+    }
+
+    const WHOLE_NOTES = ['C', 'D', 'E', 'F', 'G', 'A', 'B',];
+    const ROMAN_NOTES = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+    const ROMAN_SECONDARY = [
+        [false, ''],
+        [true, ''],
+        [true, ''],
+        [false, ''],
+        [false, ''],
+        [true, ''],
+        [true, '°'],
+    ];
+    const MODS = ['', '#', 'x', '(3#)', '(4#)', '(3#)', '(4#)', '(5#|5b)', '(4b)', '(3b)', 'bb', 'b',];
+    const CHORDS = [
+        ['maj7', '6'],
+        ['m7', 'm6'],
+        ['m7'],
+        ['maj7', '6'], 
+        ['7', '6'],
+        ['m7'],
+        ['dim7'],
+    ];
+
+    const WHOLE_NOTE_TO_REAL_INDICES = [0, 2, 4, 5, 7, 9, 11];
+
+    const OCTAVE = 7;
+    const REAL_OCTAVE = 12;
+
+    const HEPTATONIC_SCALE = [2, 2, 1, 2, 2, 2, 1];
+    const HEPTATONIC_MODES = [
+        ["Ionian", "major"],
+        ["Dorian"],
+        ["Phrygian"],
+        ["Lydian"],
+        ["Mixolydian"],
+        ["Aeolian", "minor"],
+        ["Locrian"],
+    ];
+
+    const WHOLE_NOTE_SELECT = WHOLE_NOTES.map((n, i) => [n, i]);
+    const MOD_SELECT = [
+        ['x', 2],
+        ['#', 1],
+        ['~', 0],
+        ['b', -1],
+        ['bb', -2],
+    ];
+
+    const modulo = (x, y) => ((x%y)+y)%y;
+
+    const heptaToDodeca = function(wni, mi) {
+        return modulo(WHOLE_NOTE_TO_REAL_INDICES[modulo(wni, OCTAVE)] + mi, REAL_OCTAVE);
+    };
+
+    const generateChordScale = function(mode, wni, mi) {
+        var scale = [];
+        var acc = 0; // half step accumulator
+        var si = 0; // scale index
+
+        for (var i = 0; i < OCTAVE; i++) {
+            si = modulo(i + mode, OCTAVE); // scale index
+            
+            // Building the chord
+            var chord = {};
+
+            // index section
+            chord.wni = modulo(wni + i, OCTAVE); // whole note index [0, 7]
+            chord.rni = heptaToDodeca(wni, acc + mi); // real note index [0, 11]
+            chord.rwni = heptaToDodeca(chord.wni, 0); // real whole note index [0, 11]
+            chord.mi = modulo(chord.rni - chord.rwni, REAL_OCTAVE); // mod index [0, 11]
+
+            // name section
+            chord.wholeNote = WHOLE_NOTES[chord.wni]; // whole note name
+            chord.mod = MODS[chord.mi]; // mod name
+            chord.possibleChords = CHORDS[si]; // list of possible chords
+            chord.bareRoman = ROMAN_NOTES[i]; // roman symbol
+            chord.secRoman = (ROMAN_SECONDARY[si][0] ? chord.bareRoman.toLowerCase() : chord.bareRoman).concat(ROMAN_SECONDARY[si][1]);
+
+            scale.push(chord);
+
+            // Updating the accumulator
+            acc += HEPTATONIC_SCALE[si];
+        }
+
+        return scale;
+    };
+
+    const generateModeMatrix = function(wni, mi) {
+        var modes = [];
+
+        for (var i = 0; i < OCTAVE; i++) {
+            var mode = {};
+
+            // index section
+            mode.i = i;
+
+            // name section
+            mode.name = HEPTATONIC_MODES[i];
+            mode.chordScale = generateChordScale(i, wni, mi);
+
+            modes.push(mode);
+        }
+
+        return modes;
+    };
+
+    var cl = /*#__PURE__*/Object.freeze({
+        ROMAN_NOTES: ROMAN_NOTES,
+        WHOLE_NOTE_SELECT: WHOLE_NOTE_SELECT,
+        MOD_SELECT: MOD_SELECT,
+        generateChordScale: generateChordScale,
+        generateModeMatrix: generateModeMatrix
+    });
+
+    /* src\App.svelte generated by Svelte v3.6.5 */
+
+    const file = "src\\App.svelte";
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.chord = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.mode = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.rn = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_3(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.n = list[i][0];
+    	child_ctx.v = list[i][1];
+    	return child_ctx;
+    }
+
+    function get_each_context_4(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.n = list[i][0];
+    	child_ctx.v = list[i][1];
+    	return child_ctx;
+    }
+
+    // (21:0) {#each cl.WHOLE_NOTE_SELECT as [n, v]}
+    function create_each_block_4(ctx) {
+    	var option, t_value = ctx.n, t, option_value_value;
+
+    	return {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = option_value_value = ctx.v;
+    			option.value = option.__value;
+    			add_location(option, file, 21, 1, 442);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option, anchor);
+    			append(option, t);
+    		},
+
+    		p: function update(changed, ctx) {
+    			option.value = option.__value;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option);
+    			}
+    		}
+    	};
+    }
+
+    // (28:0) {#each cl.MOD_SELECT as [n, v]}
+    function create_each_block_3(ctx) {
+    	var option, t_value = ctx.n, t, option_value_value;
+
+    	return {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = option_value_value = ctx.v;
+    			option.value = option.__value;
+    			add_location(option, file, 28, 1, 579);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option, anchor);
+    			append(option, t);
+    		},
+
+    		p: function update(changed, ctx) {
+    			option.value = option.__value;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option);
+    			}
+    		}
+    	};
+    }
+
+    // (35:0) {#if showHeader}
+    function create_if_block_2(ctx) {
+    	var tr, t;
+
+    	var if_block = (ctx.showModeNames) && create_if_block_3();
+
+    	var each_value_2 = ROMAN_NOTES;
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	return {
+    		c: function create() {
+    			tr = element("tr");
+    			if (if_block) if_block.c();
+    			t = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    			add_location(tr, file, 35, 0, 688);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, tr, anchor);
+    			if (if_block) if_block.m(tr, null);
+    			append(tr, t);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(tr, null);
+    			}
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (ctx.showModeNames) {
+    				if (!if_block) {
+    					if_block = create_if_block_3();
+    					if_block.c();
+    					if_block.m(tr, t);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (changed.cl) {
+    				each_value_2 = ROMAN_NOTES;
+
+    				for (var i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks[i] = create_each_block_2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(tr, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+    				each_blocks.length = each_value_2.length;
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(tr);
+    			}
+
+    			if (if_block) if_block.d();
+
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    // (37:0) {#if showModeNames}
+    function create_if_block_3(ctx) {
+    	var th;
+
+    	return {
+    		c: function create() {
+    			th = element("th");
+    			th.textContent = "MODES";
+    			attr(th, "class", "svelte-wmqv9l");
+    			add_location(th, file, 37, 1, 714);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, th, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(th);
+    			}
+    		}
+    	};
+    }
+
+    // (41:0) {#each cl.ROMAN_NOTES as rn}
+    function create_each_block_2(ctx) {
+    	var th, t_value = ctx.rn, t;
+
+    	return {
+    		c: function create() {
+    			th = element("th");
+    			t = text(t_value);
+    			attr(th, "class", "svelte-wmqv9l");
+    			add_location(th, file, 41, 1, 766);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, th, anchor);
+    			append(th, t);
+    		},
+
+    		p: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(th);
+    			}
+    		}
+    	};
+    }
+
+    // (49:1) {#if showModeNames}
+    function create_if_block_1(ctx) {
+    	var td, b, t_value = ctx.mode.name[0], t;
+
+    	return {
+    		c: function create() {
+    			td = element("td");
+    			b = element("b");
+    			t = text(t_value);
+    			add_location(b, file, 49, 18, 873);
+    			attr(td, "class", "mode svelte-wmqv9l");
+    			add_location(td, file, 49, 1, 856);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, td, anchor);
+    			append(td, b);
+    			append(b, t);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.modeMatrix) && t_value !== (t_value = ctx.mode.name[0])) {
+    				set_data(t, t_value);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(td);
+    			}
+    		}
+    	};
+    }
+
+    // (61:4) {#if showRoman}
+    function create_if_block(ctx) {
+    	var td, span, b, t_value = ctx.chord.secRoman, t;
+
+    	return {
+    		c: function create() {
+    			td = element("td");
+    			span = element("span");
+    			b = element("b");
+    			t = text(t_value);
+    			add_location(b, file, 62, 25, 1227);
+    			attr(span, "class", "roman");
+    			add_location(span, file, 62, 5, 1207);
+    			attr(td, "class", "roman svelte-wmqv9l");
+    			add_location(td, file, 61, 4, 1183);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, td, anchor);
+    			append(td, span);
+    			append(span, b);
+    			append(b, t);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.modeMatrix) && t_value !== (t_value = ctx.chord.secRoman)) {
+    				set_data(t, t_value);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(td);
+    			}
+    		}
+    	};
+    }
+
+    // (52:1) {#each mode.chordScale as chord}
+    function create_each_block_1(ctx) {
+    	var td1, table, tr0, td0, span0, b, t0_value = ctx.chord.wholeNote, t0, sup, t1_value = ctx.chord.mod, t1, span1, t2_value = ctx.chord.possibleChords[0], t2, t3, tr1;
+
+    	var if_block = (ctx.showRoman) && create_if_block(ctx);
+
+    	return {
+    		c: function create() {
+    			td1 = element("td");
+    			table = element("table");
+    			tr0 = element("tr");
+    			td0 = element("td");
+    			span0 = element("span");
+    			b = element("b");
+    			t0 = text(t0_value);
+    			sup = element("sup");
+    			t1 = text(t1_value);
+    			span1 = element("span");
+    			t2 = text(t2_value);
+    			t3 = space();
+    			tr1 = element("tr");
+    			if (if_block) if_block.c();
+    			add_location(sup, file, 56, 44, 1046);
+    			add_location(b, file, 56, 24, 1026);
+    			attr(span0, "class", "note");
+    			add_location(span0, file, 56, 5, 1007);
+    			attr(span1, "class", "chord");
+    			add_location(span1, file, 56, 77, 1079);
+    			attr(td0, "class", "chord svelte-wmqv9l");
+    			add_location(td0, file, 55, 4, 983);
+    			add_location(tr0, file, 54, 3, 974);
+    			add_location(tr1, file, 59, 3, 1154);
+    			attr(table, "class", "chord svelte-wmqv9l");
+    			add_location(table, file, 53, 2, 949);
+    			attr(td1, "class", "svelte-wmqv9l");
+    			add_location(td1, file, 52, 1, 942);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, td1, anchor);
+    			append(td1, table);
+    			append(table, tr0);
+    			append(tr0, td0);
+    			append(td0, span0);
+    			append(span0, b);
+    			append(b, t0);
+    			append(b, sup);
+    			append(sup, t1);
+    			append(td0, span1);
+    			append(span1, t2);
+    			append(table, t3);
+    			append(table, tr1);
+    			if (if_block) if_block.m(tr1, null);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.modeMatrix) && t0_value !== (t0_value = ctx.chord.wholeNote)) {
+    				set_data(t0, t0_value);
+    			}
+
+    			if ((changed.modeMatrix) && t1_value !== (t1_value = ctx.chord.mod)) {
+    				set_data(t1, t1_value);
+    			}
+
+    			if ((changed.modeMatrix) && t2_value !== (t2_value = ctx.chord.possibleChords[0])) {
+    				set_data(t2, t2_value);
+    			}
+
+    			if (ctx.showRoman) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(tr1, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(td1);
+    			}
+
+    			if (if_block) if_block.d();
+    		}
+    	};
+    }
+
+    // (47:0) {#each modeMatrix as mode}
+    function create_each_block(ctx) {
+    	var tr, t0, t1;
+
+    	var if_block = (ctx.showModeNames) && create_if_block_1(ctx);
+
+    	var each_value_1 = ctx.mode.chordScale;
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	return {
+    		c: function create() {
+    			tr = element("tr");
+    			if (if_block) if_block.c();
+    			t0 = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t1 = space();
+    			add_location(tr, file, 47, 1, 829);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, tr, anchor);
+    			if (if_block) if_block.m(tr, null);
+    			append(tr, t0);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(tr, null);
+    			}
+
+    			append(tr, t1);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (ctx.showModeNames) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block_1(ctx);
+    					if_block.c();
+    					if_block.m(tr, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (changed.showRoman || changed.modeMatrix) {
+    				each_value_1 = ctx.mode.chordScale;
+
+    				for (var i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(tr, t1);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+    				each_blocks.length = each_value_1.length;
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(tr);
+    			}
+
+    			if (if_block) if_block.d();
+
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    function create_fragment(ctx) {
+    	var h1, t1, div0, select0, t2, select1, t3, table, t4, t5, p, span0, input0, t6, t7, span1, input1, t8, t9, span2, input2, t10, t11, div1, dispose;
+
+    	var each_value_4 = WHOLE_NOTE_SELECT;
+
+    	var each_blocks_2 = [];
+
+    	for (var i = 0; i < each_value_4.length; i += 1) {
+    		each_blocks_2[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+    	}
+
+    	var each_value_3 = MOD_SELECT;
+
+    	var each_blocks_1 = [];
+
+    	for (var i = 0; i < each_value_3.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+    	}
+
+    	var if_block = (ctx.showHeader) && create_if_block_2(ctx);
+
+    	var each_value = ctx.modeMatrix;
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	return {
+    		c: function create() {
+    			h1 = element("h1");
+    			h1.textContent = "~ modes ~";
+    			t1 = space();
+    			div0 = element("div");
+    			select0 = element("select");
+
+    			for (var i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].c();
+    			}
+
+    			t2 = space();
+    			select1 = element("select");
+
+    			for (var i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t3 = space();
+    			table = element("table");
+    			if (if_block) if_block.c();
+    			t4 = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t5 = space();
+    			p = element("p");
+    			span0 = element("span");
+    			input0 = element("input");
+    			t6 = text(" show mode names");
+    			t7 = space();
+    			span1 = element("span");
+    			input1 = element("input");
+    			t8 = text(" show header");
+    			t9 = space();
+    			span2 = element("span");
+    			input2 = element("input");
+    			t10 = text(" show numerals");
+    			t11 = space();
+    			div1 = element("div");
+    			attr(h1, "class", "svelte-wmqv9l");
+    			add_location(h1, file, 15, 0, 305);
+    			if (ctx.wniSelect === void 0) add_render_callback(() => ctx.select0_change_handler.call(select0));
+    			attr(select0, "class", "svelte-wmqv9l");
+    			add_location(select0, file, 19, 0, 370);
+    			if (ctx.miSelect === void 0) add_render_callback(() => ctx.select1_change_handler.call(select1));
+    			attr(select1, "class", "svelte-wmqv9l");
+    			add_location(select1, file, 26, 0, 515);
+    			attr(table, "class", "modes svelte-wmqv9l");
+    			add_location(table, file, 33, 0, 649);
+    			attr(input0, "type", "checkbox");
+    			add_location(input0, file, 75, 20, 1383);
+    			attr(span0, "class", "check svelte-wmqv9l");
+    			add_location(span0, file, 75, 0, 1363);
+    			attr(input1, "type", "checkbox");
+    			add_location(input1, file, 76, 20, 1477);
+    			attr(span1, "class", "check svelte-wmqv9l");
+    			add_location(span1, file, 76, 0, 1457);
+    			attr(input2, "type", "checkbox");
+    			add_location(input2, file, 77, 20, 1564);
+    			attr(span2, "class", "check svelte-wmqv9l");
+    			add_location(span2, file, 77, 0, 1544);
+    			add_location(p, file, 74, 0, 1359);
+    			attr(div0, "class", "global svelte-wmqv9l");
+    			add_location(div0, file, 17, 0, 325);
+    			attr(div1, "class", "global svelte-wmqv9l");
+    			add_location(div1, file, 81, 0, 1645);
+
+    			dispose = [
+    				listen(select0, "change", ctx.select0_change_handler),
+    				listen(select1, "change", ctx.select1_change_handler),
+    				listen(input0, "change", ctx.input0_change_handler),
+    				listen(input1, "change", ctx.input1_change_handler),
+    				listen(input2, "change", ctx.input2_change_handler)
+    			];
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, h1, anchor);
+    			insert(target, t1, anchor);
+    			insert(target, div0, anchor);
+    			append(div0, select0);
+
+    			for (var i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].m(select0, null);
+    			}
+
+    			select_option(select0, ctx.wniSelect);
+
+    			append(div0, t2);
+    			append(div0, select1);
+
+    			for (var i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(select1, null);
+    			}
+
+    			select_option(select1, ctx.miSelect);
+
+    			append(div0, t3);
+    			append(div0, table);
+    			if (if_block) if_block.m(table, null);
+    			append(table, t4);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(table, null);
+    			}
+
+    			append(div0, t5);
+    			append(div0, p);
+    			append(p, span0);
+    			append(span0, input0);
+
+    			input0.checked = ctx.showModeNames;
+
+    			append(span0, t6);
+    			append(p, t7);
+    			append(p, span1);
+    			append(span1, input1);
+
+    			input1.checked = ctx.showHeader;
+
+    			append(span1, t8);
+    			append(p, t9);
+    			append(p, span2);
+    			append(span2, input2);
+
+    			input2.checked = ctx.showRoman;
+
+    			append(span2, t10);
+    			insert(target, t11, anchor);
+    			insert(target, div1, anchor);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.cl) {
+    				each_value_4 = WHOLE_NOTE_SELECT;
+
+    				for (var i = 0; i < each_value_4.length; i += 1) {
+    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+
+    					if (each_blocks_2[i]) {
+    						each_blocks_2[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks_2[i] = create_each_block_4(child_ctx);
+    						each_blocks_2[i].c();
+    						each_blocks_2[i].m(select0, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_2.length; i += 1) {
+    					each_blocks_2[i].d(1);
+    				}
+    				each_blocks_2.length = each_value_4.length;
+    			}
+
+    			if (changed.wniSelect) select_option(select0, ctx.wniSelect);
+
+    			if (changed.cl) {
+    				each_value_3 = MOD_SELECT;
+
+    				for (var i = 0; i < each_value_3.length; i += 1) {
+    					const child_ctx = get_each_context_3(ctx, each_value_3, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks_1[i] = create_each_block_3(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(select1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+    				each_blocks_1.length = each_value_3.length;
+    			}
+
+    			if (changed.miSelect) select_option(select1, ctx.miSelect);
+
+    			if (ctx.showHeader) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block_2(ctx);
+    					if_block.c();
+    					if_block.m(table, t4);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (changed.modeMatrix || changed.showRoman || changed.showModeNames) {
+    				each_value = ctx.modeMatrix;
+
+    				for (var i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(table, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (changed.showModeNames) input0.checked = ctx.showModeNames;
+    			if (changed.showHeader) input1.checked = ctx.showHeader;
+    			if (changed.showRoman) input2.checked = ctx.showRoman;
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(h1);
+    				detach(t1);
+    				detach(div0);
+    			}
+
+    			destroy_each(each_blocks_2, detaching);
+
+    			destroy_each(each_blocks_1, detaching);
+
+    			if (if_block) if_block.d();
+
+    			destroy_each(each_blocks, detaching);
+
+    			if (detaching) {
+    				detach(t11);
+    				detach(div1);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let wniSelect = 0;
+    	let miSelect = 0;
+
+    	let showModeNames = true;
+    	let showHeader = true;
+    	let showRoman = true;
+
+    	let modeMatrix = generateModeMatrix(0, 0);
+
+    	function select0_change_handler() {
+    		wniSelect = select_value(this);
+    		$$invalidate('wniSelect', wniSelect);
+    		$$invalidate('cl', cl);
+    	}
+
+    	function select1_change_handler() {
+    		miSelect = select_value(this);
+    		$$invalidate('miSelect', miSelect);
+    		$$invalidate('cl', cl);
+    	}
+
+    	function input0_change_handler() {
+    		showModeNames = this.checked;
+    		$$invalidate('showModeNames', showModeNames);
+    	}
+
+    	function input1_change_handler() {
+    		showHeader = this.checked;
+    		$$invalidate('showHeader', showHeader);
+    	}
+
+    	function input2_change_handler() {
+    		showRoman = this.checked;
+    		$$invalidate('showRoman', showRoman);
+    	}
+
+    	$$self.$$.update = ($$dirty = { wniSelect: 1, miSelect: 1 }) => {
+    		if ($$dirty.wniSelect || $$dirty.miSelect) { $$invalidate('modeMatrix', modeMatrix = generateModeMatrix(parseInt(wniSelect), parseInt(miSelect))); }
+    	};
+
+    	return {
+    		wniSelect,
+    		miSelect,
+    		showModeNames,
+    		showHeader,
+    		showRoman,
+    		modeMatrix,
+    		select0_change_handler,
+    		select1_change_handler,
+    		input0_change_handler,
+    		input1_change_handler,
+    		input2_change_handler
+    	};
+    }
+
+    class App extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance, create_fragment, safe_not_equal, []);
+    	}
+    }
+
+    const app = new App({
+    	target: document.body,
+    	props: {
+    	}
+    });
+
+    return app;
+
+}());
 //# sourceMappingURL=bundle.js.map

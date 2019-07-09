@@ -9,13 +9,13 @@
 	let showRoman = true;
 
 	let modeMatrix = cl.generateModeMatrix(0, 0);
-	
+
 	$: modeMatrix = cl.generateModeMatrix(parseInt(wniSelect), parseInt(miSelect));
 </script>
 
 <h1>~ modes ~</h1>
 
-<div>
+<div class="global">
 <!-- Note selection -->
 <select bind:value={wniSelect}>
 {#each cl.WHOLE_NOTE_SELECT as [n, v]}
@@ -75,12 +75,16 @@
 <p>
 <span class="check"><input type=checkbox bind:checked={showModeNames}> show mode names</span>
 <span class="check"><input type=checkbox bind:checked={showHeader}> show header</span>
-<span class="check"><input type=checkbox bind:checked={showRoman}> show roman numerals</span>
+<span class="check"><input type=checkbox bind:checked={showRoman}> show numerals</span>
 </p>
 </div>
 
+<div class="global">
+
+</div>
+
 <style>
-	div {
+	div.global {
 		font-family: 'Consolas', Courier, monospace;
 		text-align: center;
 	}
