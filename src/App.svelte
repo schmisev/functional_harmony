@@ -3,7 +3,7 @@
 
 	let wniSelect = 0;
 	let miSelect = 0;
-
+	
 	let showModeNames = true;
 	let showHeader = true;
 	let showRoman = true;
