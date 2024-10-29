@@ -13,7 +13,7 @@
 	$: modeMatrix = cl.generateModeMatrix(parseInt(wniSelect), parseInt(miSelect));
 </script>
 
-<h1>~ modes ~</h1>
+<h1>~ functional harmony ~</h1>
 
 <div class="global">
 <!-- Note selection -->
